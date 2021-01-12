@@ -13,5 +13,16 @@ public class Tester{
     System.out.println(Radix.length(15));
     System.out.println(Radix.length(-10));
     System.out.println(Radix.length(5112));
+
+    MyLinkedList original = new MyLinkedList();
+    original.add("1");
+    original.add("2");
+    MyLinkedList[] buckets = new MyLinkedList[10];
+    for (int i = 0; i < buckets.length; i++){
+      buckets[i] = new MyLinkedList();
+      buckets[i].add(i + "");
+    }
+    Radix.merge(original, buckets);
+    System.out.println(original);
   }
 }
