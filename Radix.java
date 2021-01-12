@@ -74,7 +74,7 @@ public class Radix{
 
     SortableLinkedList reversedNegativeBucket = new SortableLinkedList();
 
-    for (int i = negativeBucket.size() - 1; i > 0; i--){
+    for (int i = negativeBucket.size() - 1; i >= 0; i--){
       reversedNegativeBucket.add(0 - negativeBucket.get(i));
     }
 
