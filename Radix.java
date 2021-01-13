@@ -1,6 +1,6 @@
 public class Radix{
   public static int nth(int n, int col){
-    return (int)((Math.abs(n) / Math.pow(10, col)) % 10);
+    return (int)Math.abs(((Math.abs(n) / Math.pow(10, col)) % 10));
   }
 
   public static int length(int n){
@@ -66,7 +66,29 @@ public class Radix{
       }
     }*/
 
-    SortableLinkedList negativeBucket = new SortableLinkedList();
+    radixSortSimple(data);
+    SortableLinkedList negs = new SortableLinkedList();
+    SortableLinkedList pos = new SortableLinkedList();
+
+    for (int i = 0; i < data.size(); i++){
+      int num = data.get(0);
+
+      if (num < 0){
+        negs.add(0, num);
+        data.remove(0);
+        i = i - 1;
+      }
+      else{
+        pos.add(num);
+        data.remove(0);
+        i = i - 1;
+      }
+    }
+
+    data.extend(negs);
+    data.extend(pos);
+
+    /*SortableLinkedList negativeBucket = new SortableLinkedList();
     SortableLinkedList positiveBucket = new SortableLinkedList();
 
     for (int i = 0; i < data.size(); i++){
@@ -94,7 +116,7 @@ public class Radix{
 
     data.extend(reversedNegativeBucket);
     data.extend(positiveBucket);
-    
+    */
   }
 
 }
