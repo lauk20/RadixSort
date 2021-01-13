@@ -53,21 +53,35 @@ public class Radix{
   }
 
   public static void radixSort(SortableLinkedList data){
+    /*radixSortSimple(data);
+
+    for (int i = 0; i < data.size(); i++){
+      int num = data.get(i);
+
+      if (num < 0){
+        data.add(0, num);
+        i = i + 1;
+        data.remove(i);
+        i = i - 1;
+      }
+    }*/
+
     SortableLinkedList negativeBucket = new SortableLinkedList();
     SortableLinkedList positiveBucket = new SortableLinkedList();
 
     for (int i = 0; i < data.size(); i++){
-      if (data.get(i) < 0){
-        negativeBucket.add(Math.abs(data.get(i)));
-        data.remove(i);
-        i = i - 1;
+      int num = data.get(i);
+
+      if (num < 0){
+        negativeBucket.add(Math.abs(num));
       }
       else{
-        positiveBucket.add(data.get(i));
-        data.remove(i);
-        i = i - 1;
+        positiveBucket.add(num);
       }
     }
+
+    SortableLinkedList remover = new SortableLinkedList();
+    remover.extend(data);
 
     radixSortSimple(negativeBucket);
     radixSortSimple(positiveBucket);
@@ -80,6 +94,7 @@ public class Radix{
 
     data.extend(reversedNegativeBucket);
     data.extend(positiveBucket);
+    
   }
 
 }
