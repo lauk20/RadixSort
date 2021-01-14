@@ -69,16 +69,14 @@ public class Radix{
     SortableLinkedList pos = new SortableLinkedList();
 
     for (int i = 0; i < data.size(); i++){
-      int num = data.get(0);
+      int num = data.remove(0);
 
       if (num < 0){
         negs.add(0, num);
-        data.remove(0);
         i = i - 1;
       }
       else{
         pos.add(num);
-        data.remove(0);
         i = i - 1;
       }
     }
