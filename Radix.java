@@ -26,7 +26,7 @@ public class Radix{
     int largestDigit = 0;
 
     for (int i = 0; i < data.size(); i++){
-      int item = data.get(i);
+      int item = data.remove(0);
       int digits = length(item);
 
       if (digits > largestDigit){
@@ -34,7 +34,6 @@ public class Radix{
       }
 
       buckets[nth(item, 0)].add(item);
-      data.remove(i);
       i = i - 1;
     }
 
@@ -42,10 +41,9 @@ public class Radix{
 
     for (int i = 1; i < largestDigit; i++){
       for (int j = 0; j < data.size(); j++){
-        int item = data.get(0);
+        int item = data.remove(0);
 
         buckets[nth(item, i)].add(item);
-        data.remove(0);
         j = j - 1;
       }
       merge(data, buckets);
